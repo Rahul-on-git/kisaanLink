@@ -20,10 +20,3 @@ router.get('/products', (req, res) => {
 
 
 module.exports = router;
-
-
-// Define a route to get all products
-
-
-// Export the router
-module.exports = router;
