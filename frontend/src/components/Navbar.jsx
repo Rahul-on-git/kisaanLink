@@ -13,7 +13,6 @@ function Navbar() {
         && (
         <>
           <Link to="/login">Login</Link>
-          <Link to="/shop">Shop</Link>
           <Link to="/register">Register</Link>
         </>
         )}
@@ -25,6 +24,7 @@ function Navbar() {
         </>
         )}
 
+        <Link to="/shop">Shop</Link>
         <input type='text' placeholder='Search' className='search-box'/>
       </nav>
     </div>

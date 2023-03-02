@@ -24,7 +24,7 @@ function Register() {
             </fieldset>
             <form className="form-container">
                 <div className="form-sub">
-                    <label for="username">Username:</label>
+                    <label for="username">Name:</label>
                     <input type='text' name="username" id="username" onChange={(e) => {setUsername(e.target.value)}}/>
                 </div>
                 <div className="form-sub">
