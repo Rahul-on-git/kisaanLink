@@ -7,12 +7,13 @@ function Navbar() {
 
   return (
     <div className="navbar">
-      <Link to="/"><h1>Kisaan-Link</h1></Link>
+      <Link to="/"><h1>Kisaan Link</h1></Link>
       <nav>
         {(true)
         && (
         <>
           <Link to="/login">Login</Link>
+          <Link to="/shop">Shop</Link>
           <Link to="/register">Register</Link>
         </>
         )}
@@ -23,6 +24,8 @@ function Navbar() {
           <button type="submit" onClick={''}>Logout</button>
         </>
         )}
+
+        <input type='text' placeholder='Search' className='search-box'/>
       </nav>
     </div>
   );

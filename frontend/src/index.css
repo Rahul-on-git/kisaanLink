@@ -14,10 +14,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   background-color: #30343F;
   color: #FAFAFF;
-  height: 10vh;
+  height: 15vh;
 }
 
 a {
@@ -63,4 +63,49 @@ nav {
 .img-front {
   height: 150px;
   width: 200px;
+}
+
+.register-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+  padding: 2em;
+}
+
+.radio-buttons {
+  padding: 1.5em;
+  display: flex;
+  justify-content: center;
+  gap: 3em;
+  border-radius: 5px;
+  border: 1px solid #30343F;
+  width: 40%;
+}
+
+.radio-buttons * {
+  font-size: 1.25rem;
+}
+
+.form-container {
+  font-size: 1.25rem;
+  width: 40%;
+  padding: 1.5em;
+  border: 1px solid #30343F;
+  border-radius: 5px;
+}
+
+.form-sub {
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+}
+
+.form-sub * {
+  font-size: 1rem;
+  padding: .5em;
+}
+
+.search-box {
+  padding: .25em 8px;
 }
