@@ -1,25 +1,48 @@
 const Buyer = require('../models/buyer');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 //  Auth
 exports.login = (req, res, next) => {
-    let buyerContact = req.body.buyer.Contact;
-    let buyerPass = req.body.buyer.Pass;
-    res.status(202);
-    res.json({ mess: "Log in successful" });
+    let buyerContact = req.body.buyerContact;
+    let buyerPass = req.body.buyerPass;
+
+    if(!buyerContact || !buyerPass){
+        res.status(400)
+        throw new Error("Empty Email or Password");
+    }
+
+    Buyer.findOne({ buyerContact })
+        .then( buyerCont => {
+            if ( buyerCont && (bcrypt.compare(buyerPass, Buyer.buyerPass)) ) {
+                accessToken = jwt.sign({
+                    Buyer:{
+                        buyerContact: Buyer.buyerContact,
+                        buyerName: Buyer.buyerName
+                    }
+                }, "kisaanLink",
+                {expiresIn: "1440"}
+                );
+                res.status(200).json(accessToken);
+            }
+            else{
+                res.status(401);
+                throw new Error("Email or Password not matched")
+            }
+        })
+
 }
 
 exports.signup = (req, res, next) => {
-    let buyerName = req.body.buyer.Name;
-    let buyerContact = req.body.buyer.Contact;
-    let buyerLocation = req.body.buyer.Location;
-    let buyerPass = req.body.buyer.Pass;
+    let buyerName = req.body.buyerName;
+    let buyerContact = req.body.buyerContact;
+    let buyerLocation = req.body.buyerLocation;
+    let buyerPass = req.body.buyerPass;
 
-    if(!buyer.Name || !buyer.Contact || !buyer.Location || !buyer.Pass){
+    if(!buyerName || !buyerContact || !buyerLocation || !buyerPass){
         res.status(400);
         throw new Error("All fields are mandatory");
     }
-
-    const userAvailable = Buyer.findOne({buyerContact})
 
     Buyer.findOne({ buyerContact })
         .then(exists => {
