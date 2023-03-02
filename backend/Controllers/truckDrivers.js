@@ -1,24 +1,23 @@
-const Buyer = require('../models/buyer');
+const TruckDriver = require('../models/truckDriver');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 //  Auth
 exports.login = (req, res, next) => {
-    let buyerContact = req.body.buyerContact;
-    let buyerPass = req.body.buyerPass;
-
-    if(!buyerContact || !buyerPass){
+    let truckDriverContact = req.body.truckDriverContact;
+    let truckDriverPass = req.body.truckDriverPass;
+    if(!truckDriverContact || !truckDriverPass){
         res.status(400)
         throw new Error("Empty Email or Password");
     }
 
-    Buyer.findOne({ buyerContact })
-        .then( buyerCont => {
-            if ( buyerCont && (bcrypt.compare(buyerPass, Buyer.buyerPass)) ) {
+    TruckDriver.findOne({ truckDriverContact })
+        .then( truckDriverCont => {
+            if ( truckDriverCont && (bcrypt.compare(truckDriverPass, TruckDriver.truckDriverPass)) ) {
                 accessToken = jwt.sign({
-                    Buyer:{
-                        buyerContact: Buyer.buyerContact,
-                        buyerName: Buyer.buyerName
+                    TruckDriver:{
+                        truckDriverContact: TruckDriver.truckDriverContact,
+                        truckDriverName: TruckDriver.truckDriverName
                     }
                 }, "kisaanLink",
                 {expiresIn: "1440"}
@@ -29,35 +28,34 @@ exports.login = (req, res, next) => {
                 res.status(401);
                 throw new Error("Email or Password not matched")
             }
-        })
-
+        })    
 }
 
 exports.signup = (req, res, next) => {
-    let buyerName = req.body.buyerName;
-    let buyerContact = req.body.buyerContact;
-    let buyerLocation = req.body.buyerLocation;
-    let buyerPass = req.body.buyerPass;
+    let truckDriverName = req.body.truckDriverName;
+    let truckDriverContact = req.body.truckDriverContact;
+    let truckDriverLocation = req.body.truckDriverLocation;
+    let truckDriverPass = req.body.truckDriverPass;
 
-    if(!buyerName || !buyerContact || !buyerLocation || !buyerPass){
+    if ( !truckDriverName ||  !truckDriverContact ||  !truckDriverLocation ||  !truckDriverPass) {
         res.status(400);
         throw new Error("All fields are mandatory");
     }
 
-    Buyer.findOne({ buyerContact })
+    TruckDriver.findOne({ truckDriverContact })
         .then(exists => {
             if (exists) {
                 res.status(400);
                 throw new Error("User already exists");
             }
-        })   
+        })
 
     let hashedPass;
 
-    bcrypt.hash(buyerPass, 10)
+    bcrypt.hash(truckDriverPass, 10)
         .then((hashedPass) => {
-            const buyer = new Buyer({ buyerName: buyerName, buyerContact: buyerContact, buyerLocation: buyerLocation, buyerPass: hashedPass });
-            buyer
+            const truckDriver = new truckDriver({ truckDriverName: truckDriverName, truckDriverContact: truckDriverContact, truckDriverLocation: truckDriverLocation, truckDriverPass: hashedPass });
+         truckDriver
                 .save()
                 .then(() => {
                     res.json({ mess: "Sign up succesful" })
@@ -74,6 +72,4 @@ exports.currentUser = (req, res, next) => {
     res.json({ mess: "Current user is identified" });
 }
 
-exports.displayProducts = (req, res, next) =>{
-    res.status(202);
-}
+//Functions
