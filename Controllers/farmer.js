@@ -19,4 +19,6 @@ exports.signup = (req, res, next) =>{
     let farmerContact = req.body.farmerContact;
     let farmerLocation = req.body.farmerLocation;
     let farmerPass = req.body.farmerPass;
+
+    res.status(202);
 }
