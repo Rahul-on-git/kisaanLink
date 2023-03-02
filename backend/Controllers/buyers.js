@@ -80,5 +80,6 @@ exports.currentUser = (req, res, next) => {
 }
 
 exports.displayProducts = (req, res, next) =>{
+    
     res.status(202);
 }
