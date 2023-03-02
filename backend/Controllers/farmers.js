@@ -1,12 +1,36 @@
 const Farmer = require('../models/farmer');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 //  Auth
 exports.login = (req, res, next) => {
     let farmerContact = req.body.farmerContact;
     let farmerPass = req.body.farmerPass;
-    res.status(202);
-    res.json({ mess: "Log in successful" });
+
+    if(!farmerContact || !farmerPass){
+        res.status(400)
+        throw new Error("Empty Email or Password");
+    }
+
+    Farmer.findOne({ farmerContact })
+        .then( farmerCont => {
+            if ( farmerCont && (bcrypt.compare(farmerPass, Farmer.farmerPass)) ) {
+                accessToken = jwt.sign({
+                    Farmer:{
+                        farmerContact: Farmer.farmerContact,
+                        farmerName: Farmer.farmerName
+                    }
+                }, "kisaanLink",
+                {expiresIn: "1440"}
+                );
+                res.status(200).json(accessToken);
+            }
+            else{
+                res.status(401);
+                throw new Error("Email or Password not matched")
+            }
+        })
+
 }
 
 exports.signup = (req, res, next) => {
