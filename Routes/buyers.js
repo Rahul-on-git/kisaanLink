@@ -3,4 +3,6 @@ const router = express.Router();
 
 const buyerController = require('../Controllers/buyers');
 
-router.use('/displayProducts', buyerController.displayProducts);
+router.get('/displayProducts', buyerController.displayProducts);
+
+module.exports = router;
