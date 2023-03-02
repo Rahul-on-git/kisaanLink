@@ -60,6 +60,5 @@ exports.takeProduceDetails = (req, res, next) => {
     let produceQuantity = req.body.produceQuantity;
     let producePerishability = req.producePerishability;
     let produceDesiredPrice = req.produceDesiredPrice;
-
     res.status(202);
 }
