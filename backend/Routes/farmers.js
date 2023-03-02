@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const farmerController = require('../Controllers/farmer');
+const farmerController = require('../Controllers/farmers');
 
 router.post('/signup', farmerController.signup);
 

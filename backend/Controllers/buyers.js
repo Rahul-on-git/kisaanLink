@@ -39,5 +39,5 @@ exports.currentUser = (req, res, next) => {
 }
 
 exports.displayProducts = (req, res, next) =>{
-    //displays products
+    
 }
