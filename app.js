@@ -26,6 +26,6 @@ app.use('/buyers', buyersRoutes);
 username = 'kisaanLinkU';
 password = 'kisaanLinkUser';
 let port = 4000;
-mongoose.connect(`mongodb+srv://${username}:${password}@clusterone.awyx4aq.mongodb.net/?retryWrites=true&w=majority`).then((result) => {
+mongoose.connect(`mongodb+srv://${username}:${password}@clusterone.awyx4aq.mongodb.net/kisaanLive?retryWrites=true&w=majority`).then((result) => {
     app.listen(port);
 }).catch((err) => { console.log(err) });

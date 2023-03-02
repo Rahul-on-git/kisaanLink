@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
-const schema = mongoose.schema;
+const Schema = mongoose.Schema;
 
-const farmerSchema = new schema(
+const farmerSchema = new Schema(
     {
         farmerName: {
             type: String,
@@ -10,7 +10,8 @@ const farmerSchema = new schema(
         },
         farmerContact:{
             type: String,
-            required: true
+            required: true,
+            unique: true
         },
         farmerLocation:{
             type: String,
@@ -20,6 +21,7 @@ const farmerSchema = new schema(
             type: String,
             required: true
         }
-    }
+    }, {timestamps: true }
 );
 
+module.exports = mongoose.model("Farmer", farmerSchema);
