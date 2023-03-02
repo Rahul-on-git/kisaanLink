@@ -1,6 +1,7 @@
 const Farmer = require('../models/farmer');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+// const asyncHandler = require('express-async-handler');
 
 //  Auth
 exports.login = (req, res, next) => {
@@ -14,23 +15,28 @@ exports.login = (req, res, next) => {
 
     Farmer.findOne({ farmerContact })
         .then( farmerCont => {
-            if ( farmerCont && (bcrypt.compare(farmerPass, Farmer.farmerPass)) ) {
-                accessToken = jwt.sign({
-                    Farmer:{
-                        farmerContact: Farmer.farmerContact,
-                        farmerName: Farmer.farmerName
-                    }
-                }, "kisaanLink",
-                {expiresIn: "1440"}
-                );
-                res.status(200).json(accessToken);
-            }
-            else{
+            if(!farmerCont){
                 res.status(401);
-                throw new Error("Email or Password not matched")
+                throw new Error("farmer contact not found");
             }
-        })
-
+            bcrypt.compare(farmerPass, farmerCont.farmerPass)
+            .then(compareVal=>{
+                if ( ( compareVal )) {
+                    accessToken = jwt.sign({
+                        Farmer:{
+                            farmerContact: farmerCont.farmerContact,
+                            farmerName: farmerCont.farmerName
+                        }
+                    }, "kisaanLink",
+                    {expiresIn: "1440"}
+                    );
+                    res.status(200).json(accessToken);
+                }
+                else{
+                    res.status(401);
+                    throw new Error("Email or Password not matched")
+                }
+            })})
 }
 
 exports.signup = (req, res, next) => {
