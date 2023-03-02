@@ -30,20 +30,18 @@ exports.signup = (req, res, next) => {
 
     let hashedPass;
 
-    bcrypt.hash(farmerPass)
-        .then((hashedP) => {
-            hashedPass = hashedP;
+    bcrypt.hash(farmerPass, 10)
+        .then((hashedPass) => {
+            const farmer = new Farmer({ farmerName: farmerName, farmerContact: farmerContact, farmerLocation: farmerLocation, farmerPass: hashedPass });
+            farmer
+                .save()
+                .then(() => {
+                    res.json({ mess: "Sign up succesful" })
+                    res.status(202);
+                })
+                .catch((err) => { console.log(err) })
         })
 
-    const farmer = new Farmer({ farmerName: farmerName, farmerContact: farmerContact, farmerLocation: farmerLocation, farmerPass: hashedPass });
-
-    farmer
-        .save()
-        .then(() => {
-            res.json({ mess: "Sign up succesful" })
-            res.status(202);
-        })
-        .catch((err) => { console.log(err) })
 }
 
 exports.currentUser = (req, res, next) => {
