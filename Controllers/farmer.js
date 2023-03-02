@@ -1,7 +1,7 @@
 //  Auth
 exports.login = (req, res, next) =>{
-    // let farmerContact = req.body.farmerContact;
-    // let farmerPass = req.body.farmerPass;
+    let farmerContact = req.body.farmerContact;
+    let farmerPass = req.body.farmerPass;
     res.status(202);
     res.json({mess: "Log in successful"});
 }
@@ -32,5 +32,4 @@ exports.takeProduceDetails = (req, res, next) =>{
     let produceDesiredPrice = req.producePerishability;
 
     res.status(202);
-
 }
