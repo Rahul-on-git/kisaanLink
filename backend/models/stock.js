@@ -1,13 +1,27 @@
 const mongoose = require("mongoose");
 
-const schema = mongoose.schema;
+const schema = mongoose.Schema;
 
 const stockSchema = new schema(
     {
-        stockType:{
+        produceType:{
             type: String,
             required: true,
             unique:true
-        }
-    }
+        },
+        produceQuantity:{
+            type: String,
+            required: true
+        },
+        producePerishability:{
+            type: String,
+            required: true
+        },
+        produceDesiredPrice:{
+            type:String,
+            required:true
+        }, 
+    }, {timestamps:true }
 );
+
+module.exports = mongoose.model("Stock",stockSchema);
