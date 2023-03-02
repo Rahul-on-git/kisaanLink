@@ -1,3 +1,4 @@
+import Categories from "../components/Categories";
 import Combo from "../components/Combo";
 
 function Home() {
@@ -9,7 +10,17 @@ function Home() {
         <Combo />
         <Combo />
       </div>
-      <div>Categories</div>
+      <div>Categories: </div>
+      <div className="category-container">
+        <Categories />
+        <Categories />
+        <Categories />
+        <Categories />
+        <Categories />
+        <Categories />
+        <Categories />
+        <Categories />
+      </div>
     </div>
   );
 }

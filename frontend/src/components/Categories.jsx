@@ -1,13 +1,12 @@
 import itemImage from '../assets/temp.jpg'
 
-function Combo() {
+function Categories() {
     return (
         <div className="combo">
-            <div>Combo Name</div>
             <div><img src={itemImage} alt='stock' className='img-front'/></div>
-            <div>Combo Price</div>
+            <div>Category Name</div>
         </div>
     );
 }
 
-export default Combo
+export default Categories

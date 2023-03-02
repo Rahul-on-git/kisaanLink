@@ -38,18 +38,29 @@ nav {
   gap: 2em
 }
 
-.combo-container {
+.combo-container, .category-container {
   display: flex;
   gap: 3em;
   justify-content: center;
 }
 
+.category-container {
+  flex-wrap: wrap;
+  width: 80%;
+}
+
 .combo {
   display: flex;
   flex-direction: column;
+  align-items: center;
   border: 1px solid #30343F;
   border-radius: 5px;
   gap: 1em;
   padding: 2em;
-  box-shadow: 10px 10px 2px 1px rgba(0, 0, 255, .2);;
+  box-shadow: 5px 5px 2px 1px rgba(0, 0, 255, .2);
+}
+
+.img-front {
+  height: 150px;
+  width: 200px;
 }
