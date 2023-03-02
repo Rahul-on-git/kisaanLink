@@ -1,4 +1,5 @@
 const Farmer = require('../models/farmer');
+const bcrypt = require('bcrypt');
 
 //  Auth
 exports.login = (req, res, next) => {
@@ -14,14 +15,27 @@ exports.signup = (req, res, next) => {
     let farmerLocation = req.body.farmerLocation;
     let farmerPass = req.body.farmerPass;
 
-    if(!farmerName || !farmerContact || !farmerLocation || !farmerPass){
+    if (!farmerName || !farmerContact || !farmerLocation || !farmerPass) {
         res.status(400);
         throw new Error("All fields are mandatory");
     }
 
-    const userAvailable = Farmer.findOne({farmerContact})
+    Farmer.findOne({ farmerContact })
+        .then(exists => {
+            if (exists) {
+                res.status(400);
+                throw new Error("User already exists");
+            }
+        })
 
-    const farmer = new Farmer({ farmerName: farmerName, farmerContact: farmerContact, farmerLocation: farmerLocation, farmerPass: farmerPass });
+    let hashedPass;
+
+    bcrypt.hash(farmerPass)
+        .then((hashedP) => {
+            hashedPass = hashedP;
+        })
+
+    const farmer = new Farmer({ farmerName: farmerName, farmerContact: farmerContact, farmerLocation: farmerLocation, farmerPass: hashedPass });
 
     farmer
         .save()
