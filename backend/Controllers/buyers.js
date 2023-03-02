@@ -14,23 +14,28 @@ exports.login = (req, res, next) => {
 
     Buyer.findOne({ buyerContact })
         .then( buyerCont => {
-            if ( buyerCont && (bcrypt.compare(buyerPass, Buyer.buyerPass)) ) {
-                accessToken = jwt.sign({
-                    Buyer:{
-                        buyerContact: Buyer.buyerContact,
-                        buyerName: Buyer.buyerName
-                    }
-                }, "kisaanLink",
-                {expiresIn: "1440"}
-                );
-                res.status(200).json(accessToken);
-            }
-            else{
+            if(!buyerCont){
                 res.status(401);
-                throw new Error("Email or Password not matched")
+                throw new Error("buyer contact not found");
             }
-        })
-
+            bcrypt.compare(buyerPass, buyerCont.buyerPass)
+            .then(compareVal=>{
+                if ( ( compareVal )) {
+                    accessToken = jwt.sign({
+                        Buyer:{
+                            buyerContact: buyerCont.buyerContact,
+                            buyerName: buyerCont.buyerName
+                        }
+                    }, "kisaanLink",
+                    {expiresIn: "1440"}
+                    );
+                    res.status(200).json(accessToken);
+                }
+                else{
+                    res.status(401);
+                    throw new Error("Email or Password not matched")
+                }
+            })})
 }
 
 exports.signup = (req, res, next) => {
