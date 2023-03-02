@@ -21,15 +21,28 @@ exports.signup = (req, res, next) => {
 
     const userAvailable = Buyer.findOne({buyerContact})
 
-    const buyer = new buyer({ buyerName: buyerName, buyerContact: buyerContact, buyerLocation: buyerLocation, buyerPass: buyerPass });
+    Buyer.findOne({ buyerContact })
+        .then(exists => {
+            if (exists) {
+                res.status(400);
+                throw new Error("User already exists");
+            }
+        })   
 
-    farmer
-        .save()
-        .then(() => {
-            res.json({ mess: "Sign up succesful" })
-            res.status(202);
+    let hashedPass;
+
+    bcrypt.hash(buyerPass, 10)
+        .then((hashedPass) => {
+            const buyer = new Buyer({ buyerName: buyerName, buyerContact: buyerContact, buyerLocation: buyerLocation, buyerPass: hashedPass });
+            buyer
+                .save()
+                .then(() => {
+                    res.json({ mess: "Sign up succesful" })
+                    res.status(202);
+                })
+                .catch((err) => { console.log(err) })
         })
-        .catch((err) => { console.log(err) })
+
 }
 
 exports.currentUser = (req, res, next) => {
@@ -39,5 +52,5 @@ exports.currentUser = (req, res, next) => {
 }
 
 exports.displayProducts = (req, res, next) =>{
-    
+    res.status(202);
 }
