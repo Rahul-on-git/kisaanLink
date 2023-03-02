@@ -1,4 +1,12 @@
+import { useState } from "react"
+
 function Register() {
+    const  [username, setUsername] = useState('');
+    const  [contact, setContact] = useState('');
+    const  [location, setLocation] = useState('');
+    const  [password, setPassword] = useState('');
+
+
     return (
         <div className="register-login">
             <fieldset className="radio-buttons">
@@ -17,19 +25,19 @@ function Register() {
             <form className="form-container">
                 <div className="form-sub">
                     <label for="username">Username:</label>
-                    <input type='text' name="username" id="username" />
+                    <input type='text' name="username" id="username" onChange={(e) => {setUsername(e.target.value)}}/>
                 </div>
                 <div className="form-sub">
-                    <label for="contact">Contact:</label>
-                    <input type='text' name="contact" id="contact" />
+                    <label for="contact">Contact Number:</label>
+                    <input type='text' name="contact" id="contact" onChange={(e) => {setContact(e.target.value)}}/>
                 </div>
                 <div className="form-sub">
                     <label for="location">Location:</label>
-                    <input type='text' name="location" id="location" />
+                    <input type='text' name="location" id="location" onChange={(e) => {setLocation(e.target.value)}}/>
                 </div>
                 <div className="form-sub">
                     <label for="password">Password:</label>
-                    <input type='password' name="password" id="password" />
+                    <input type='password' name="password" id="password" onChange={(e) => {setPassword(e.target.value)}}/>
                 </div>
             </form>
         </div>
