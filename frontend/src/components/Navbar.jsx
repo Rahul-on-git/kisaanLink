@@ -20,12 +20,12 @@ function Navbar() {
         && (
         <>
           {/* <div>{user.email}</div> */}
-          <button type="submit" onClick={''}>Logout</button>
+          {/* <button type="submit" onClick={''}>Logout</button> */}
         </>
         )}
-
+        <Link to="/truck">Truck Management</Link>
         <Link to="/shop">Shop</Link>
-        <input type='text' placeholder='Search' className='search-box'/>
+        {/* <input type='text' placeholder='Search' className='search-box'/> */}
       </nav>
     </div>
   );

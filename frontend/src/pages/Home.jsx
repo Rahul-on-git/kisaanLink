@@ -4,13 +4,14 @@ import Combo from "../components/Combo";
 function Home() {
   return (
     <div className="home-container">
+      <h1>Combos: </h1>
       <div className="combo-container">
         <Combo />
         <Combo />
         <Combo />
         <Combo />
       </div>
-      <div>Categories: </div>
+      <h1>Categories: </h1>
       <div className="category-container">
         <Categories />
         <Categories />

@@ -4,7 +4,6 @@ function Login() {
     const  [contact, setContact] = useState('');
     const  [password, setPassword] = useState('');
 
-
     return (
         <div className="register-login">
             <fieldset className="radio-buttons">
@@ -29,6 +28,9 @@ function Login() {
                     <label for="password">Password:</label>
                     <input type='password' name="password" id="password" onChange={(e) => {setPassword(e.target.value)}}/>
                 </div>
+
+                <button className="form-btn">Login</button>
+
             </form>
         </div>
     )

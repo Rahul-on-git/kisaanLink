@@ -20,6 +20,10 @@ body {
   height: 15vh;
 }
 
+.home-container h1 {
+  color: #30343F;
+}
+
 a {
   color: #FAFAFF;
   text-decoration: none;
@@ -49,7 +53,7 @@ nav {
   width: 80%;
 }
 
-.combo {
+.combo, .category, .truck {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -88,11 +92,14 @@ nav {
 }
 
 .form-container {
+  display: flex;
+  flex-direction: column;
   font-size: 1.25rem;
   width: 40%;
   padding: 1.5em;
   border: 1px solid #30343F;
   border-radius: 5px;
+  gap: 1em;
 }
 
 .form-sub {
@@ -108,4 +115,56 @@ nav {
 
 .search-box {
   padding: .25em 8px;
+}
+
+.truck-management {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2em;
+}
+
+.truck {
+  width: 20vw;
+}
+
+.truck > div {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.form-btn {
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #121212;
+  border-radius: 12px;
+  box-shadow: transparent 0 0 0 3px,rgba(18, 18, 18, .1) 0 6px 20px;
+  box-sizing: border-box;
+  color: #121212;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 1 1 auto;
+  font-family: Inter,sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1;
+  outline: none;
+  padding: 1rem 1.2rem;
+  margin: 2em 0 0 0;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .2s,-webkit-box-shadow .2s;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.form-btn:hover {
+  box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
+}
+
+.none {
+  color: inherit;
 }

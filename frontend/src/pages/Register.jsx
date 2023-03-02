@@ -39,6 +39,8 @@ function Register() {
                     <label for="password">Password:</label>
                     <input type='password' name="password" id="password" onChange={(e) => {setPassword(e.target.value)}}/>
                 </div>
+
+                <button className="form-btn">Register</button>
             </form>
         </div>
     )
