@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 exports.login = (req, res, next) => {
     let truckDriverContact = req.body.truckDriverContact;
     let truckDriverPass = req.body.truckDriverPass;
+
     if(!truckDriverContact || !truckDriverPass){
         res.status(400)
         throw new Error("Empty Email or Password");
@@ -13,22 +14,28 @@ exports.login = (req, res, next) => {
 
     TruckDriver.findOne({ truckDriverContact })
         .then( truckDriverCont => {
-            if ( truckDriverCont && (bcrypt.compare(truckDriverPass, TruckDriver.truckDriverPass)) ) {
-                accessToken = jwt.sign({
-                    TruckDriver:{
-                        truckDriverContact: TruckDriver.truckDriverContact,
-                        truckDriverName: TruckDriver.truckDriverName
-                    }
-                }, "kisaanLink",
-                {expiresIn: "1440"}
-                );
-                res.status(200).json(accessToken);
-            }
-            else{
+            if(!truckDriverCont){
                 res.status(401);
-                throw new Error("Email or Password not matched")
+                throw new Error("truckDriver contact not found");
             }
-        })    
+            bcrypt.compare(truckDriverPass, truckDriverCont.truckDriverPass)
+            .then(compareVal=>{
+                if ( ( compareVal )) {
+                    accessToken = jwt.sign({
+                        truckDriver:{
+                            truckDriverContact: truckDriverCont.truckDriverContact,
+                            truckDriverName: truckDriverCont.truckDriverName
+                        }
+                    }, "kisaanLink",
+                    {expiresIn: "1440"}
+                    );
+                    res.status(200).json(accessToken);
+                }
+                else{
+                    res.status(401);
+                    throw new Error("Email or Password not matched")
+                }
+            })})
 }
 
 exports.signup = (req, res, next) => {
