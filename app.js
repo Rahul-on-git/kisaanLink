@@ -22,6 +22,7 @@ app.use('/farmers', farmersRoutes);
 app.use('/buyers', buyersRoutes);
 // app.use('truckD', truckDriverRoutes);
 
+// DB connection
 username = 'kisaanLinkU';
 password = 'kisaanLinkUser';
 let port = 4000;
