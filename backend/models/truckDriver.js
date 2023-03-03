@@ -24,4 +24,4 @@ const truckDriverSchema = new Schema(
     }, {timestamps: true }
 );
 
-module.exports = mongoose.model( "truckDriver", truckDriverSchema);
+module.exports = mongoose.model( "TruckDriver", truckDriverSchema);
