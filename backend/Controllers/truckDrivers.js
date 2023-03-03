@@ -74,9 +74,7 @@ exports.signup = (req, res, next) => {
 }
 
 exports.currentUser = (req, res, next) => {
-
-    res.status(202);
-    res.json({ mess: "Current user is identified" });
+    res.json(req.TruckDriver);
 }
 
 //Functions
