@@ -43,16 +43,17 @@ const truckSchema = new schema(
             }
         },
         truckTotalCapacity: {
-            type: String,
+            type: Number,
             required: true
         },
         truckAvailableCapacity: {
-            type: String,
+            type: Number,
             required: true
         },
         farmersInPool: [
             {
-                farmerContactNumber: String
+                farmerContactNumber: String,
+                weightOfItems: Number
             }
         ]
         //farmersdetails //array of objects
@@ -72,7 +73,7 @@ truckSchema.methods.addFarmer = function (farmerContactNumber) {
     if (!this.hasCapacityForFarmer()) {
         throw new Error("Truck does not have enough available capacity for a new farmer");
     }
-    this.truckAvailableCapacity--;
+    truckAvailableCapacity = truckAvailableCapacity - weightOfItems;
     this.farmersInPool.push({ farmerContactNumber });
 };
 
