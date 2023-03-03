@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 const buyerController = require('../Controllers/buyers');
+const validateToken = require('../middlewares/validateTokenHandler');
 
 router.post('/signup', buyerController.signup);
 
