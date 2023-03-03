@@ -170,3 +170,8 @@ nav {
 .none {
   color: inherit;
 }
+
+.error {
+  color: red;
+  border: 1px solid red;
+}

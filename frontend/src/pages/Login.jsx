@@ -1,8 +1,44 @@
 import { useState } from "react"
+import useUserContext from "../hooks/useUserContext";
 
 function Login() {
+    const [userType, setUserType] = useState('buyers');
+    
+    const { dispatch } = useUserContext()
+
     const  [contact, setContact] = useState('');
     const  [password, setPassword] = useState('');
+
+    async function handleClick(e) {
+        e.preventDefault()
+        const objToSend = {}
+        objToSend[`${userType.slice(0,-1)}Contact`] = contact
+        objToSend[`${userType.slice(0,-1)}Pass`] = password
+        console.log(objToSend)
+        const response = await fetch(`/${userType}/login`, {
+            method: 'post',
+            body: JSON.stringify(objToSend),
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+        const json = await response.json();
+
+        if (response.ok) {
+            setContact('')
+            setPassword('')
+            setUserType('buyers')
+            dispatch({ type: 'LOGIN', payload: json });
+            localStorage.setItem('user', JSON.stringify(json));
+            console.log(json)
+        }
+    }
+
+    function handleUserType(e) {
+        setUserType(e.target.id)
+        // console.log()
+    }
+
 
     return (
         <div className="register-login">
@@ -11,16 +47,16 @@ function Login() {
                 <button>Farmer</button> */}
                 <legend>Select user type: </legend>
                 <div>
-                    <input type="radio" id="customer" name="userGroup" value="Customer" checked/>
-                    <label for="customer">Customer</label>
+                    <input type="radio" id="buyers" name="userGroup" value="Customer" defaultChecked={"checked"} onClick={handleUserType}/>
+                    <label for="buyers">Customer</label>
                 </div>
                 <div>
-                    <input type="radio" id="farmer" name="userGroup" value="Farmer" />
-                    <label for="farmer">Farmer</label>
+                    <input type="radio" id="farmers" name="userGroup" value="Farmer" onClick={handleUserType}/>
+                    <label for="farmers">Farmer</label>
                 </div>
                 <div>
-                    <input type="radio" id="truckDriver" name="userGroup" value="TuckDriver" />
-                    <label for="truckDriver">Truck Driver</label>
+                    <input type="radio" id="truckDrivers" name="userGroup" value="TruckDriver" onClick={handleUserType}/>
+                    <label for="truckDrivers">Truck Driver</label>
                 </div>
             </fieldset>
             <form className="form-container">
@@ -33,7 +69,7 @@ function Login() {
                     <input type='password' name="password" id="password" onChange={(e) => {setPassword(e.target.value)}}/>
                 </div>
 
-                <button className="form-btn">Login</button>
+                <button className="form-btn" onClick={handleClick}>Login</button>
 
             </form>
         </div>

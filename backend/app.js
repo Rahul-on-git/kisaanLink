@@ -21,7 +21,7 @@ app.use((req, res, next) => {
 // Route grps
 app.use('/farmers', farmersRoutes);
 app.use('/buyers', buyersRoutes);
-app.use('/truckD', truckDriverRoutes);
+app.use('/truckDrivers', truckDriverRoutes);
 
 // DB connection
 username = 'kisaanLinkU';

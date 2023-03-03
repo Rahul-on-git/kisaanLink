@@ -29,7 +29,7 @@ exports.login = (req, res, next) => {
                     }, "kisaanLink",
                     {expiresIn: "1440m"}
                     );
-                    res.status(200).json(accessToken);
+                    res.status(200).json({type: "TruckDriver", accessToken});
                 }
                 else{
                     res.status(401);
@@ -65,8 +65,7 @@ exports.signup = (req, res, next) => {
          truckDriver
                 .save()
                 .then(() => {
-                    res.json({ mess: "Sign up succesful" })
-                    res.status(202);
+                    res.status(202).json({ mess: "Sign up succesful" })
                 })
                 .catch((err) => { console.log(err) })
         })
