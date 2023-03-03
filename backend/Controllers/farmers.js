@@ -1,7 +1,8 @@
 const Farmer = require('../models/farmer');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-// const asyncHandler = require('express-async-handler');
+const Stock = require('../models/stock');
+const stock = require('../models/stock');
 
 //  Auth
 exports.login = (req, res, next) => {
@@ -86,5 +87,14 @@ exports.takeProduceDetails = (req, res, next) => {
     let produceQuantity = req.body.produceQuantity;
     let producePerishability = req.producePerishability;
     let produceDesiredPrice = req.produceDesiredPrice;
-    res.status(202);
+
+    new Stock({ produceType: produceType, produceQuantity: produceQuantity, producePerishability: producePerishability, produceDesiredPrice: produceDesiredPrice })
+    .then((stock) =>{
+            stock
+                .save()
+                .then(() => {
+                    res.json({ gotProduceDetails: "Produce details successfully saved" })
+                    res.status(202);
+                })
+                .catch((err) => { console.log(err) })})
 }
