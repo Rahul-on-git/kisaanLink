@@ -23,8 +23,9 @@ function Navbar() {
           <Link to="/register">Register</Link>
         </>
         )}
-
-        <Link to="/truck">Truck Management</Link>
+        {(user && (user.type === "Farmer" || user.type === "TruckDriver")) && 
+        (<Link to="/truck">Truck Management</Link>)
+        }
         <Link to="/shop">Shop</Link>
         {/* <input type='text' placeholder='Search' className='search-box'/> */}
 
