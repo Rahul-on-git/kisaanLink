@@ -9,7 +9,7 @@ router.post('/signup', buyerController.signup);
 
 router.post('/login', buyerController.login);
 
-router.get('/currentUser', buyerController.currentUser);
+router.get('/currentUser', validateToken, buyerController.currentUser);
 
 router.get('/products', (req, res, next) => {
     // Get product details from the seller's controller file
