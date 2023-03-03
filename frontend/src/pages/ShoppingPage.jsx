@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 import imageList from "../assets/individualItemImageList";
 import useCartContext from "../hooks/useCartContext";
@@ -7,6 +7,7 @@ import useCartContext from "../hooks/useCartContext";
 function ShoppingPage() {
     const [products, setProducts] = useState([])
     const {cart, dispatch} = useCartContext()
+    const [queryParameters] = useSearchParams()
 
     function handleClick(e, product) {
         e.preventDefault();
@@ -17,13 +18,11 @@ function ShoppingPage() {
             dispatch({type: 'CREATE_CART', payload: {name: product.produceType, quantity: 1, cost: product.produceDesiredPrice}})
         }
 
-        console.log(cart)
-
     }
 
     useEffect(() => {
         async function fetchProducts () {
-            const response = await fetch('/buyers/products', {
+            const response = await fetch('/buyers/products/', {
                 method: 'GET'
             })
 
@@ -39,7 +38,30 @@ function ShoppingPage() {
             setProducts(json)
         }
 
-        fetchProducts()
+        async function fetchType (type) {
+            const response = await fetch(`/buyers/product/${type}`, {
+                method: 'GET'
+            })
+
+            const json = await response.json()
+
+            json.forEach((product) => {
+                imageList.forEach( (imageL) => {
+                    if(imageL[1] === product.produceType.toLowerCase()) {
+                        product.image = imageL[0]
+                    }
+            })})
+
+            
+            setProducts(json.filter((el) => { return el.produceType === "Apple" ? false : true}))
+        }
+
+        const type = queryParameters.get('type')
+        if(!type) {
+            fetchProducts()
+        } else {
+            fetchType(type)
+        }
     }, [])
     return (
         <div className="container">{
@@ -51,7 +73,7 @@ function ShoppingPage() {
                             <h3>{product.produceType}</h3>
                             <p>Available Quantity: {' '} {product.produceQuantity}kgs</p>
                             <p>Price: <span>Rs{' '}{product.produceDesiredPrice}</span></p>
-                            <button onClick={(e) => handleClick(e,product)}>Add to Cart</button>
+                            <button onClick={(e) => handleClick(e,product)} className="form-btn">Add to Cart</button>
                         </div>
                     </Link>
                 );

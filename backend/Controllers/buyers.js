@@ -98,6 +98,11 @@ exports.displayProducts = (req, res, next) =>{
     .then((stock)=> {res.status(200).json(stock)})
 }
 
+exports.displayType = (req, res, next) =>{
+    Stock.find({produceCategory: req.params.type}).limit(20)
+    .then((stock)=> {res.status(200).json(stock)})
+}
+
 exports.displayProduct = (req, res, next) =>{
     Stock.find({_id: req.params.id})
     .then((stock)=> {res.status(200).json(stock)})
