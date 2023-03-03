@@ -13,14 +13,8 @@ function Home() {
       </div>
       <h1>Categories: </h1>
       <div className="category-container">
-        <Categories />
-        <Categories />
-        <Categories />
-        <Categories />
-        <Categories />
-        <Categories />
-        <Categories />
-        <Categories />
+        <Categories type={'Fruits'}/>
+        <Categories type={'Vegetables'}/>
       </div>
     </div>
   );
