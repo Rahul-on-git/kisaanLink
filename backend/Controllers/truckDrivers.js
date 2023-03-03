@@ -22,12 +22,12 @@ exports.login = (req, res, next) => {
             .then(compareVal=>{
                 if ( ( compareVal )) {
                     accessToken = jwt.sign({
-                        truckDriver:{
+                        TruckDriver:{
                             truckDriverContact: truckDriverCont.truckDriverContact,
                             truckDriverName: truckDriverCont.truckDriverName
                         }
                     }, "kisaanLink",
-                    {expiresIn: "1440"}
+                    {expiresIn: "1440m"}
                     );
                     res.status(200).json(accessToken);
                 }
@@ -61,7 +61,7 @@ exports.signup = (req, res, next) => {
 
     bcrypt.hash(truckDriverPass, 10)
         .then((hashedPass) => {
-            const truckDriver = new truckDriver({ truckDriverName: truckDriverName, truckDriverContact: truckDriverContact, truckDriverLocation: truckDriverLocation, truckDriverPass: hashedPass });
+            const truckDriver = new TruckDriver({ truckDriverName: truckDriverName, truckDriverContact: truckDriverContact, truckDriverLocation: truckDriverLocation, truckDriverPass: hashedPass });
          truckDriver
                 .save()
                 .then(() => {
