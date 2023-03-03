@@ -8,7 +8,7 @@ router.post('/signup', truckDriverController.signup);
 
 router.post('/login', truckDriverController.login);
 
-router.get('/currentUser', truckDriverController.currentUser);
+router.get('/currentUser', validateToken, truckDriverController.currentUser);
 
 // const orders = require('./orders'); 
 
