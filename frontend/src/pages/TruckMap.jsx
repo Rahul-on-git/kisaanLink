@@ -1,62 +1,6 @@
-// import React from "react";
-// import {
-//   ComposableMap,
-//   Geographies,
-//   Geography,
-//   Marker
-// } from "react-simple-maps";
-
-// const geoUrl =
-//   "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/india/india-states.json";
-
-// const markers = [
-//   {
-//     markerOffset: -15,
-//     name: "Buenos Aires",
-//     coordinates: [-17, -6]
-//   },
-// ];
-
-// const TruckMap = () => {
-//   return (<>
-//     <h2>Truck Locations</h2>
-//     <ComposableMap className="map"
-//       projection="geoAzimuthalEqualArea"
-//       projectionConfig={{
-//         rotate: [-80, 5, 0],
-//         scale: 425
-//       }}
-//     >
-//       <Geographies geography={geoUrl}>
-//         {({ geographies }) =>
-//           geographies.map((geo) => (
-//             <Geography
-//               key={geo.rsmKey}
-//               geography={geo}
-//               fill="#EAEAEC"
-//               stroke="#D6D6DA"
-//             />
-//           ))
-//         }
-//       </Geographies>
-//       {markers.map(({ name, coordinates, markerOffset }) => (
-//         <Marker key={name} coordinates={coordinates}>
-//           <circle r={10} fill="#F00" stroke="#fff" strokeWidth={2} />
-//           <text
-//             textAnchor="middle"
-//             y={markerOffset}
-//             style={{ fontFamily: "system-ui", fill: "#5D5A6D" }}
-//           >
-//             {name}
-//           </text>
-//         </Marker>
-//       ))}
-//     </ComposableMap>
-//     </>);
-// };
-// src/DisplayMapFC.js
-
+import {Link} from 'react-router-dom';
 import * as React from 'react';
+
 
 const TruckMap = () => {
 
@@ -74,6 +18,8 @@ const TruckMap = () => {
     const H = window.H;
     const platform = new H.service.Platform({
         apikey: "0PL2REO-9qDw56ZuDeOx4g22ymUIXoaDrXds0GVbO4M",
+
+        // apikey: "closed"
     });
     const defaultLayers = platform.createDefaultLayers();
     const hMap = new H.Map(mapRef.current, defaultLayers.vector.normal.map, {
@@ -170,8 +116,9 @@ const TruckMap = () => {
 
   return (
   <>
-  <h2 style={{textAlign: 'center'}}>Truck Locations </h2>
+  <h2 style={{textAlign: 'center'}}>Current truck location and Route taken by truck</h2>
   <div className="map" ref={mapRef} style={{ height: "500px", width: "500px", margin: "auto" }} />
+  <Link to="/truck/pool" className='none' style={{textAlign: 'center', textDecoration: 'underline'}}><h2>Click to pool produce</h2></Link>
   </>
   );
 };

@@ -21,6 +21,10 @@ function Register() {
                     <input type="radio" id="farmer" name="userGroup" value="Farmer" />
                     <label for="farmer">Farmer</label>
                 </div>
+                <div>
+                    <input type="radio" id="truckDriver" name="userGroup" value="TuckDriver" />
+                    <label for="truckDriver">Truck Driver</label>
+                </div>
             </fieldset>
             <form className="form-container">
                 <div className="form-sub">
