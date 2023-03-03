@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+
+import imageList from "../assets/individualItemImageList";
+
 function ShoppingPage() {
     const [products, setProducts] = useState([])
 
@@ -11,6 +14,13 @@ function ShoppingPage() {
 
             const json = await response.json()
 
+            json.forEach((product) => {
+                imageList.forEach( (imageL) => {
+                    if(imageL[1] === product.produceType.toLowerCase()) {
+                        product.image = imageL[0]
+                    }
+            })})
+
             setProducts(json)
         }
 
@@ -21,13 +31,13 @@ function ShoppingPage() {
             (products.length!==0 && products.map((product) => {
                 return(
                     <Link to={`../items/${product._id}`} className='none'>
-                    <div className="product">
-                        <img src="https://via.placeholder.com/300x200.png?text=Product+1" alt="Product 1"/>
-                        <h3>{product.produceType}</h3>
-                        <p>Available Quantity: {' '} {product.produceQuantity}kgs</p>
-                        <p>Price: <span>Rs{' '}{product.produceDesiredPrice}</span></p>
-                        <button>Add to Cart</button>
-                    </div>
+                        <div className="product">
+                            <img src={product.image} alt={product.produceType}/>
+                            <h3>{product.produceType}</h3>
+                            <p>Available Quantity: {' '} {product.produceQuantity}kgs</p>
+                            <p>Price: <span>Rs{' '}{product.produceDesiredPrice}</span></p>
+                            <button>Add to Cart</button>
+                        </div>
                     </Link>
                 );
             }))}

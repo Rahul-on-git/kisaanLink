@@ -15,4 +15,6 @@ router.post('/order', buyerController.order);
 
 router.get('/products', buyerController.displayProducts);
 
+router.get('/products/:id', buyerController.displayProduct);
+
 module.exports = router;

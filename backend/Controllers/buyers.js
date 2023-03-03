@@ -97,3 +97,9 @@ exports.displayProducts = (req, res, next) =>{
     Stock.find().limit(20)
     .then((stock)=> {res.status(200).json(stock)})
 }
+
+exports.displayProduct = (req, res, next) =>{
+    Stock.find({_id: req.params.id}).limit(20)
+    .then((stock)=> {res.status(200).json(stock)})
+}
+

@@ -13,7 +13,8 @@ function Navbar() {
 
   return (
     <div className="navbar">
-      <Link to="/"><h1>Kisaan Link</h1></Link>
+      
+      <Link to="/"><i class="fa-2x fa-solid fa-seedling"></i><h1 style={{display: 'inline', margin: '.3em'}}>Kisaan Link</h1></Link>
       <nav>
         {(!user)
         && (
