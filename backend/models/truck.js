@@ -12,53 +12,68 @@ avail capacity
 farmers array of objects containng farmer contact [{farmerContact: ""},{}]*/
 
 const truckSchema = new schema(
-    {   
+    {
         truckDriverName: {
             type: String,
             required: true
         },
-        truckNumberPlate:{
+        truckNumberPlate: {
             type: String,
             required: true,
-            unique:true
+            unique: true
         },
-        truckCurrentLocation:{
-            Latitude:{
-            type: String,
-            required: true},
-            Longitude:{
-            type: String,
-            required: true                
+        truckCurrentLocation: {
+            Latitude: {
+                type: String,
+                required: true
+            },
+            Longitude: {
+                type: String,
+                required: true
             }
         },
-        truckDestinationLocation:{
-            Latitude:{
-            type: String,
-            required: true},
-            Longitude:{
-            type: String,
-            required: true                
+        truckDestinationLocation: {
+            Latitude: {
+                type: String,
+                required: true
+            },
+            Longitude: {
+                type: String,
+                required: true
             }
         },
-        truckTotalCapacity:{
+        truckTotalCapacity: {
             type: String,
-            required: true            
+            required: true
         },
-        truckAvailableCapacity:{
+        truckAvailableCapacity: {
             type: String,
-            required: true            
+            required: true
         },
-        farmersInPool:[
+        farmersInPool: [
             {
-                farmerContactNumber : String,
-                required:true
+                farmerContactNumber: String
             }
         ]
-            //farmersdetails //array of objects
-            /*add n farmers details. How?*/
+        //farmersdetails //array of objects
+        /*add n farmers details. How?*/
 
-        , 
-    }, {timestamps:true }
+        ,
+    }, { timestamps: true }
 );
 
-module.exports = mongoose.model("Truck",truckSchema);
+//method to the truck schema to check if it has enough available capacity for a new farmer
+truckSchema.methods.hasCapacityForFarmer = function () {
+    return this.truckAvailableCapacity > 0;
+};
+
+//method to update the available capacity of the truck when a new farmer is added
+truckSchema.methods.addFarmer = function (farmerContactNumber) {
+    if (!this.hasCapacityForFarmer()) {
+        throw new Error("Truck does not have enough available capacity for a new farmer");
+    }
+    this.truckAvailableCapacity--;
+    this.farmersInPool.push({ farmerContactNumber });
+};
+
+module.exports = mongoose.model("Truck", truckSchema);
