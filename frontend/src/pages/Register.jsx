@@ -1,11 +1,47 @@
 import { useState } from "react"
 
 function Register() {
+    const [userType, setUserType] = useState('buyers');
+
     const  [username, setUsername] = useState('');
     const  [contact, setContact] = useState('');
     const  [location, setLocation] = useState('');
     const  [password, setPassword] = useState('');
+    const  [error, setError] = useState('');
 
+    async function handleClick(e) {
+        e.preventDefault()
+        const objToSend = {}
+        objToSend[`${userType.slice(0,-1)}Name`] = username
+        objToSend[`${userType.slice(0,-1)}Contact`] = contact
+        objToSend[`${userType.slice(0,-1)}Location`] = location
+        objToSend[`${userType.slice(0,-1)}Pass`] = password
+        console.log(objToSend)
+        const response = await fetch(`/${userType}/signup`, {
+            method: 'post',
+            body: JSON.stringify(objToSend),
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+        const json = await response.json();
+
+        if (response.ok) {
+            setUsername('')
+            setContact('')
+            setLocation('')
+            setPassword('')
+            setUserType('buyers')
+            setError('')
+        } else {
+            setError(json)
+        }
+    }
+
+    function handleUserType(e) {
+        setUserType(e.target.id)
+        // console.log()
+    }
 
     return (
         <div className="register-login">
@@ -14,16 +50,16 @@ function Register() {
                 <button>Farmer</button> */}
                 <legend>Select user type: </legend>
                 <div>
-                    <input type="radio" id="customer" name="userGroup" value="Customer" checked/>
-                    <label for="customer">Customer</label>
+                    <input type="radio" id="buyers" name="userGroup" value="Customer" defaultChecked={"checked"} onClick={handleUserType}/>
+                    <label for="buyers">Customer</label>
                 </div>
                 <div>
-                    <input type="radio" id="farmer" name="userGroup" value="Farmer" />
-                    <label for="farmer">Farmer</label>
+                    <input type="radio" id="farmers" name="userGroup" value="Farmer" onClick={handleUserType}/>
+                    <label for="farmers">Farmer</label>
                 </div>
                 <div>
-                    <input type="radio" id="truckDriver" name="userGroup" value="TuckDriver" />
-                    <label for="truckDriver">Truck Driver</label>
+                    <input type="radio" id="truckDrivers" name="userGroup" value="TruckDriver" onClick={handleUserType}/>
+                    <label for="truckDrivers">Truck Driver</label>
                 </div>
             </fieldset>
             <form className="form-container">
@@ -44,7 +80,9 @@ function Register() {
                     <input type='password' name="password" id="password" onChange={(e) => {setPassword(e.target.value)}}/>
                 </div>
 
-                <button className="form-btn">Register</button>
+                <button className="form-btn" onClick={handleClick}>Register</button>
+
+                {error && <div className="error">{error}</div>}
             </form>
         </div>
     )

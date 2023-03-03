@@ -66,8 +66,8 @@ exports.signup = (req, res, next) => {
             farmer
                 .save()
                 .then(() => {
-                    res.json({ mess: "Sign up succesful" })
-                    res.status(202);
+                    res.status(202).json({ mess: "Sign up succesful" })
+                    
                 })
                 .catch((err) => { console.log(err) })
         })
