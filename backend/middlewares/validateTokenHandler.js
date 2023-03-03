@@ -13,8 +13,17 @@ const validateToken = asyncHandler(async (req, res, next)=>{
                 res.status(401);
                 throw new Error("user is not authorized");
             }
-            req.Farmer = decoded.Farmer;
+            if(req.body.userType == 'Farmer'){
+                req.Farmer = decoded.Farmer;
+            }
+            else if(req.body.userType == 'Buyer'){
+                req.Buyer = decoded.Buyer;
+            }
+            else if(req.body.userType == 'TruckDriver'){
+                req.TruckDriver = decoded.TruckDriver;
+            }
             next();
+            
         })
 
         if(!token){

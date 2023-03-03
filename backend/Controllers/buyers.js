@@ -74,7 +74,6 @@ exports.signup = (req, res, next) => {
 }
 
 exports.currentUser = (req, res, next) => {
-
     res.json(req.Buyer);
 }
 

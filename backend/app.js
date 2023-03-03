@@ -4,7 +4,8 @@ const app = express();
 const mongoose = require('mongoose');
 
 const farmersRoutes = require("./Routes/farmers");
-const buyersRoutes = require('./Routes/buyers')
+const buyersRoutes = require('./Routes/buyers');
+const truckDriverRoutes = require("./Routes/truckDrivers");
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.json())
@@ -20,7 +21,7 @@ app.use((req, res, next) => {
 // Route grps
 app.use('/farmers', farmersRoutes);
 app.use('/buyers', buyersRoutes);
-// app.use('truckD', truckDriverRoutes);
+app.use('/truckD', truckDriverRoutes);
 
 // DB connection
 username = 'kisaanLinkU';
