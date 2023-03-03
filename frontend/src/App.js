@@ -11,7 +11,9 @@ import Navbar from './components/Navbar';
 import PoolForm from './components/PoolForm';
 import TruckMap from './pages/TruckMap';
 import useUserContext from './hooks/useUserContext';
-
+import TrackOrder from './pages/TrackOrder';
+import StockItemPage from './pages/StockItemPage';
+import ShoppingPage from './pages/ShoppingPage';
 
 function App() {
   const { user } = useUserContext()
@@ -22,9 +24,12 @@ function App() {
         <Route path='/' element={<Home />}></Route>
         <Route path='/register' element={!user ? <Register /> : <Navigate to="/" />}></Route>
         <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
+        <Route path='/shop' element={<ShoppingPage />}></Route>
         <Route path='/truck' element={<TruckManagement />}></Route>
         <Route path='/truck/:truckName' element={<TruckMap />}></Route>
         <Route path='/truck/pool' element={<PoolForm />}></Route>
+        <Route path='/trackOrder' element={<TrackOrder />}></Route>
+        <Route path='/items/:id' element={<StockItemPage />} />
         {/* <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
         <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
         <Route path="/register" element={!user ? <Register /> : <Navigate to="/" />} /> */}

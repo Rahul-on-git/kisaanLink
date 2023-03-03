@@ -175,3 +175,193 @@ nav {
   color: red;
   border: 1px solid red;
 }
+
+
+/* CSS for stock item page */
+
+.main{
+  width: 100%;
+}
+.main .row{
+  width: 90%;
+  height: 60vh;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20vw;
+}
+
+.main .slider{
+  height: 80vh;
+  display: flex;
+}
+
+
+.main img{
+  border: 2px solid gainsboro;
+  height: 400px;
+  width: 600px
+}
+.main p{
+  margin-bottom: 20px;
+}
+.main .brand{
+  background: #008000;
+  width: fit-content;
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 5px;
+}
+.main h2{
+  font-size: 45px;
+  color: #555;
+  margin-bottom: 20px;
+}
+.main .rating{
+  display: flex;
+  height: 15px;
+}
+.main .rating .fa{
+  color: #008000;
+}
+.main .price{
+  color: #150e62;
+  font-size: 30px;
+  font-weight: bold;
+  padding-top: 10px;
+}
+.main input{
+  width: 30px;
+  border: 1px solid #ccc;
+  font-weight: bold;
+  text-align: center;
+}
+
+.main .desc{
+   width: 90%;
+  margin: 0 auto 40px;
+  font-size: 20px;
+ 
+ 
+}
+.main .desc .row{
+  padding-top:10px;
+  width: 100%;
+  height: auto;
+}
+.main .columns{
+  flex-basis: 22%;
+  height: 100%;
+}
+
+.main .details{
+  margin-top: 20px;
+}
+.main .details p{
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.main .details .rating{
+  margin: 10px 0;
+}
+
+.main .path{
+  color: #555;
+}
+
+.shop-btn-group {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px
+}
+
+.shop-btn-group button{
+  padding: .5em;
+}
+
+/* end of stock item page */
+
+/* CSS for shopping page */
+.container {
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
+  justify-content: center;
+}
+
+.product {
+  background-color: #f1f1f1;
+  margin: 10px;
+  padding: 10px;
+  width: 300px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #ddd;
+}
+
+.product img {
+  max-width: 100%;
+}
+
+.product h3 {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.product p {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.product-rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.product-rating span {
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.product-rating .stars {
+  display: flex;
+  align-items: center;
+}
+
+.product-rating .star {
+  font-size: 24px;
+  color: #FFD700;
+  margin-right: 5px;
+}
+
+.product-rating .star:last-of-type {
+  margin-right: 0;
+}
+
+.product button {
+  background-color: white;
+  color: #30343F;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.product button:hover {
+  background-color: #30343F;
+  color: white
+}
+
+.price-span {
+  color:black;
+  font-weight:bold;
+  background-color: yellow;
+}
+/* End of shopping page */

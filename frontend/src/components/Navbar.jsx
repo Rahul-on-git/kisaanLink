@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import useUserContext from '../hooks/useUserContext';
 
-
 function Navbar() {
   const { user, dispatch} = useUserContext()
 
@@ -26,6 +25,11 @@ function Navbar() {
         {(user && (user.type === "Farmer" || user.type === "TruckDriver")) && 
         (<Link to="/truck">Truck Management</Link>)
         }
+
+        {(user && (user.type === "Buyer")) && 
+        (<Link to="/trackorder">Track Order</Link>)
+        }
+
         <Link to="/shop">Shop</Link>
         {/* <input type='text' placeholder='Search' className='search-box'/> */}
 

@@ -94,10 +94,6 @@ exports.order = (req, res, next) => {
 }
 
 exports.displayProducts = (req, res, next) =>{
-    
-    Stock.find()
-    .then((stock)=> {console.log(stock)})
-    
-    // res.json({stock});
-
+    Stock.find().limit(20)
+    .then((stock)=> {res.status(200).json(stock)})
 }

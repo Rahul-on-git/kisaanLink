@@ -1,8 +1,7 @@
-import {Link} from 'react-router-dom';
 import * as React from 'react';
 
 
-const TruckMap = () => {
+const TrackOrder = () => {
 
   // Create a reference to the HTML element we want to put the map on
   const mapRef = React.useRef(null);
@@ -118,10 +117,9 @@ const TruckMap = () => {
   <>
   <h2 style={{textAlign: 'center'}}>Current truck location and Route</h2>
   <div className="map" ref={mapRef} style={{ height: "500px", width: "500px", margin: "auto" }} />
-  <Link to="/truck/pool" className='none' style={{textAlign: 'center', textDecoration: 'underline'}}><h2>Click to pool produce</h2></Link>
   </>
   );
 };
 
 
-export default TruckMap;
+export default TrackOrder;
