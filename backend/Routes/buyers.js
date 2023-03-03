@@ -11,6 +11,8 @@ router.post('/login', buyerController.login);
 
 router.get('/currentUser', validateToken, buyerController.currentUser);
 
+router.post('/order', buyerController.order);
+
 router.get('/products', (req, res, next) => {
     // Get product details from the seller's controller file
     const produceDetails = farmerController.takeProduceDetails();

@@ -1,4 +1,5 @@
 const Buyer = require('../models/buyer');
+const Order = require('../models/order');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -74,6 +75,20 @@ exports.signup = (req, res, next) => {
 
 exports.currentUser = (req, res, next) => {
     res.json(req.Buyer);
+}
+
+exports.order = (req, res, next) => {
+    let buyerContact = req.body.buyerContact;
+    let orderTotalPrice = req.body.orderTotalPrice;
+    let orderItems = req.body.orderItems;
+
+    const order = new Order({ buyerContact: buyerContact, orderTotalPrice: orderTotalPrice, orderItems: orderItems});
+            order
+                .save()
+                .then(() => {
+                    res.status(202).json({ mess: "Order placed successfully" });
+                })
+                .catch((err) => { console.log(err) })
 }
 
 exports.displayProducts = (req, res, next) =>{
