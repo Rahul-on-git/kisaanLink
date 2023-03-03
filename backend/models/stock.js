@@ -3,7 +3,11 @@ const mongoose = require("mongoose");
 const schema = mongoose.Schema;
 
 const stockSchema = new schema(
-    {
+    {   
+        produceCategory:{
+            type: String,
+            required: true,
+        },
         produceType:{
             type: String,
             required: true,

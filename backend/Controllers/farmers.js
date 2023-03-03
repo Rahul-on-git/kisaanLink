@@ -83,12 +83,13 @@ exports.currentUser = (req, res, next) => {
 //  Functions
 exports.takeProduceDetails = (req, res, next) => {
 
+    let produceCategory = req.body.produceCategory;
     let produceType = req.body.produceType;
     let produceQuantity = req.body.produceQuantity;
-    let producePerishability = req.producePerishability;
-    let produceDesiredPrice = req.produceDesiredPrice;
+    let producePerishability = req.body.producePerishability;
+    let produceDesiredPrice = req.body.produceDesiredPrice;
 
-    const stock = new Stock({ produceType: produceType, produceQuantity: produceQuantity, producePerishability: producePerishability, produceDesiredPrice: produceDesiredPrice });
+    const stock = new Stock({ produceCategory: produceCategory, produceType: produceType, produceQuantity: produceQuantity, producePerishability: producePerishability, produceDesiredPrice: produceDesiredPrice });
             stock
                 .save()
                 .then(() => {
