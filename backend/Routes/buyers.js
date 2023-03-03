@@ -13,13 +13,6 @@ router.get('/currentUser', validateToken, buyerController.currentUser);
 
 router.post('/order', buyerController.order);
 
-router.get('/products', (req, res, next) => {
-    // Get product details from the seller's controller file
-    const produceDetails = farmerController.takeProduceDetails();
-    
-    // Send the product details to the client
-    res.send(produceDetails);
-  });
-
+router.get('/products', buyerController.displayProducts);
 
 module.exports = router;

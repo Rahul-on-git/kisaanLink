@@ -1,7 +1,9 @@
 const Buyer = require('../models/buyer');
 const Order = require('../models/order');
+const Stock = require('../models/stock');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const stock = require('../models/stock');
 
 //  Auth
 exports.login = (req, res, next) => {
@@ -92,5 +94,10 @@ exports.order = (req, res, next) => {
 }
 
 exports.displayProducts = (req, res, next) =>{
-    res.status(202);
+    
+    Stock.find()
+    .then((stock)=> {console.log(stock)})
+    
+    // res.json({stock});
+
 }

@@ -4,14 +4,13 @@ const schema = mongoose.Schema;
 
 const stockSchema = new schema(
     {   
-        produceCategory:{
-            type: String,
-            required: true,
-        },
         produceType:{
             type: String,
             required: true,
-            unique:true
+        },
+        produceCategory:{
+            type: String,
+            required: true,
         },
         produceQuantity:{
             type: String,

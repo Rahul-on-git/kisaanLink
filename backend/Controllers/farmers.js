@@ -89,7 +89,7 @@ exports.takeProduceDetails = (req, res, next) => {
     let producePerishability = req.body.producePerishability;
     let produceDesiredPrice = req.body.produceDesiredPrice;
 
-    const stock = new Stock({ produceCategory: produceCategory, produceType: produceType, produceQuantity: produceQuantity, producePerishability: producePerishability, produceDesiredPrice: produceDesiredPrice });
+    const stock = new Stock({ produceType: produceType, produceCategory: produceCategory, produceQuantity: produceQuantity, producePerishability: producePerishability, produceDesiredPrice: produceDesiredPrice });
             stock
                 .save()
                 .then(() => {
