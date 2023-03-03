@@ -28,7 +28,7 @@ exports.login = (req, res, next) => {
                             farmerName: farmerCont.farmerName
                         }
                     }, "kisaanLink",
-                    {expiresIn: "1440"}
+                    {expiresIn: "1440m"}
                     );
                     res.status(200).json(accessToken);
                 }
@@ -75,7 +75,7 @@ exports.signup = (req, res, next) => {
 }
 
 exports.currentUser = (req, res, next) => {
-
+    res.json(req.Farmer);
 }
 
 
