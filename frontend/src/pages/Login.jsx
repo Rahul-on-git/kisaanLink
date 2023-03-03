@@ -1,7 +1,10 @@
 import { useState } from "react"
+import useUserContext from "../hooks/useUserContext";
 
 function Login() {
     const [userType, setUserType] = useState('buyers');
+    
+    const { dispatch } = useUserContext()
 
     const  [contact, setContact] = useState('');
     const  [password, setPassword] = useState('');
@@ -25,7 +28,8 @@ function Login() {
             setContact('')
             setPassword('')
             setUserType('buyers')
-
+            dispatch({ type: 'LOGIN', payload: json });
+            localStorage.setItem('user', JSON.stringify(json));
             console.log(json)
         }
     }

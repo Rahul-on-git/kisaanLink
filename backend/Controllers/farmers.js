@@ -30,7 +30,7 @@ exports.login = (req, res, next) => {
                     }, "kisaanLink",
                     {expiresIn: "1440m"}
                     );
-                    res.status(200).json(accessToken);
+                    res.status(200).json({accessToken});
                 }
                 else{
                     res.status(401);

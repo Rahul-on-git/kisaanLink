@@ -10,17 +10,18 @@ import TruckManagement from './pages/TruckManagement';
 import Navbar from './components/Navbar';
 import PoolForm from './components/PoolForm';
 import TruckMap from './pages/TruckMap';
+import useUserContext from './hooks/useUserContext';
 
 
 function App() {
-
+  const { user } = useUserContext()
   return (
     <BrowserRouter>
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />}></Route>
-        <Route path='/register' element={<Register />}></Route>
-        <Route path='/login' element={<Login />}></Route>
+        <Route path='/register' element={!user ? <Register /> : <Navigate to="/" />}></Route>
+        <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
         <Route path='/truck' element={<TruckManagement />}></Route>
         <Route path='/truck/:truckName' element={<TruckMap />}></Route>
         <Route path='/truck/pool' element={<PoolForm />}></Route>
