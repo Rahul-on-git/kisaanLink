@@ -11,7 +11,7 @@ router.post('/login', buyerController.login);
 
 router.get('/currentUser', validateToken, buyerController.currentUser);
 
-router.post('/order', buyerController.order);
+router.post('/order', validateToken, buyerController.order);
 
 router.get('/products', buyerController.displayProducts);
 

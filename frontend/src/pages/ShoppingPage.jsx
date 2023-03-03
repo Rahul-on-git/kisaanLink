@@ -2,9 +2,24 @@ import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 
 import imageList from "../assets/individualItemImageList";
+import useCartContext from "../hooks/useCartContext";
 
 function ShoppingPage() {
     const [products, setProducts] = useState([])
+    const {cart, dispatch} = useCartContext()
+
+    function handleClick(e, product) {
+        e.preventDefault();
+        if (!cart) {
+            dispatch({type: 'SET_CART', payload: {name: product.produceType, quantity: 1, cost: product.produceDesiredPrice}})
+        }
+        else {
+            dispatch({type: 'CREATE_CART', payload: {name: product.produceType, quantity: 1, cost: product.produceDesiredPrice}})
+        }
+
+        console.log(cart)
+
+    }
 
     useEffect(() => {
         async function fetchProducts () {
@@ -36,7 +51,7 @@ function ShoppingPage() {
                             <h3>{product.produceType}</h3>
                             <p>Available Quantity: {' '} {product.produceQuantity}kgs</p>
                             <p>Price: <span>Rs{' '}{product.produceDesiredPrice}</span></p>
-                            <button>Add to Cart</button>
+                            <button onClick={(e) => handleClick(e,product)}>Add to Cart</button>
                         </div>
                     </Link>
                 );

@@ -2,10 +2,28 @@
 import imageList from '../assets/individualItemImageList'
 import {useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom'
+import useCartContext from '../hooks/useCartContext'
 
 function StockItemPage() {
     const [product, setProduct] = useState()
+    const [quantity, setQuantity] = useState(1)
     const {id} = useParams()
+
+    const {cart, dispatch} = useCartContext()
+
+    function handleClick(e) {
+        e.preventDefault();
+        if (!cart) {
+            dispatch({type: 'SET_CART', payload: {name: product.produceType, quantity: quantity, cost: product.produceDesiredPrice}})
+        }
+        else {
+            dispatch({type: 'CREATE_CART', payload: {name: product.produceType, quantity: quantity, cost: product.produceDesiredPrice}})
+        }
+
+        console.log(cart)
+
+    }
+
     useEffect(() => {
         async function fetchProducts () {
             const response = await fetch(`/buyers/products/${id}`, {
@@ -19,8 +37,6 @@ function StockItemPage() {
                 }
             })
             setProduct(json[0])
-
-            console.log(...json)
 
         }
 
@@ -50,21 +66,17 @@ function StockItemPage() {
                         <h3>KisaanLink Price</h3>
                         <p className="price">₹ {product.produceDesiredPrice}</p>
                         <p>Quantity: {' '}
-                            <select name="quantity">
-                            <option value="select quantity">Select quantity</option>
-                            <option value="1 kg">1 kg</option>
-                            <option value="2 kg">2 kg</option>
-                            <option value="3 kg">3 kg</option>
+                            <select name="quantity" onChange={(e) => {setQuantity(e.target.value); console.log('here')}}>
+                            <option value="select quantity" >Select quantity</option>
+                            <option value="1">1 kg</option>
+                            <option value="2">2 kg</option>
+                            <option value="3">3 kg</option>
                             </select>
                         </p>
                         <div className='shop-btn-group'>
-                            <button type="button">
+                            <button type="button" onClick={handleClick}>
                                 <i className="fa fa-shopping-cart"></i>
                                 Add to cart
-                            </button>
-                            <button type="button">
-                                <i className="fa fa-shopping-cart"></i>
-                                Buy Now
                             </button>
                         </div>
                     </div>

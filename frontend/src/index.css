@@ -365,3 +365,77 @@ nav {
   background-color: yellow;
 }
 /* End of shopping page */
+
+/* CSS for cart page */
+
+.cart-title{
+  margin-top: 2em 0;
+  text-align: center;  
+  font-size: 50px;
+  font-weight: 600;;
+}
+
+.cart-page{
+  margin: auto;
+}
+
+table{
+  width:70%;
+  border-collapse: collapse;
+  margin-left:auto;
+  margin-right: auto;
+}
+
+.cart-info{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+th{
+  text-align: left;
+  padding: 5px;
+  background: rgb(12, 157, 46);
+  color: white;
+  font-weight: normal;
+
+}
+
+td{
+  padding: 10px 5px;
+}
+
+td a{
+  color:rgb(218, 41, 41);
+  font-size: 12px;
+  }
+
+td img{
+  width : 80px;
+  height : 80px;
+  margin-right: 10px;
+}
+
+.total-price{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.total-price table{
+  
+  border-top: 3px solid rgb(26, 31, 69);
+  width:100%;
+  max-width: 480px;
+  margin: 0 15% auto 0;
+ }
+
+ td:last-child{
+  text-align: right;
+}
+
+
+th:last-child{
+  text-align: right;
+}
+
+
+/* End of cart page */

@@ -5,6 +5,7 @@ import useUserContext from '../hooks/useUserContext';
 function Navbar() {
   const { user, dispatch} = useUserContext()
 
+
   function handleClick(e) {
     e.preventDefault()
     dispatch({type: 'LOGOUT'})
@@ -28,12 +29,18 @@ function Navbar() {
         }
 
         {(user && (user.type === "Buyer")) && 
-        (<Link to="/trackorder">Track Order</Link>)
-        }
+        (
+        <Link to="/trackorder">Track Order</Link>
+        )}
 
         <Link to="/shop">Shop</Link>
         {/* <input type='text' placeholder='Search' className='search-box'/> */}
+        
 
+        {(user && (user.type === "Buyer")) && 
+        (
+          <Link to="/cart"><i class="fa-solid fa-cart-shopping"></i></Link>
+        )}
         {(user)
         && (
         <>

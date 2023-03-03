@@ -80,7 +80,7 @@ exports.currentUser = (req, res, next) => {
 }
 
 exports.order = (req, res, next) => {
-    let buyerContact = req.body.buyerContact;
+    let buyerContact = req.Buyer.buyerContact;
     let orderTotalPrice = req.body.orderTotalPrice;
     let orderItems = req.body.orderItems;
 
@@ -99,7 +99,7 @@ exports.displayProducts = (req, res, next) =>{
 }
 
 exports.displayProduct = (req, res, next) =>{
-    Stock.find({_id: req.params.id}).limit(20)
+    Stock.find({_id: req.params.id})
     .then((stock)=> {res.status(200).json(stock)})
 }
 
