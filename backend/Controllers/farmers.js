@@ -88,13 +88,11 @@ exports.takeProduceDetails = (req, res, next) => {
     let producePerishability = req.producePerishability;
     let produceDesiredPrice = req.produceDesiredPrice;
 
-    new Stock({ produceType: produceType, produceQuantity: produceQuantity, producePerishability: producePerishability, produceDesiredPrice: produceDesiredPrice })
-    .then((stock) =>{
+    const stock = new Stock({ produceType: produceType, produceQuantity: produceQuantity, producePerishability: producePerishability, produceDesiredPrice: produceDesiredPrice });
             stock
                 .save()
                 .then(() => {
-                    res.json({ gotProduceDetails: "Produce details successfully saved" })
-                    res.status(202);
+                    res.status(202).json({ gotProduceDetails: "Produce details successfully saved" });
                 })
-                .catch((err) => { console.log(err) })})
+                .catch((err) => { console.log(err) })
 }
