@@ -13,7 +13,6 @@ function TruckManagement() {
         <div className="register-login">
             <h2>Trucks Near You</h2>
             <div className="truck-management">
-
                 {trucks.map((truck) => <Truck truckInfo={truck} key={truck.truckName}/>)}
             </div>
         </div>

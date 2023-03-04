@@ -515,3 +515,15 @@ h1 {
 }
 
 /* end subscription */
+
+.comboImages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2em;
+}
+
+.comboImages img {
+  height: 200px;
+  width: 200px
+}
