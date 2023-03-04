@@ -7,6 +7,7 @@ import useCartContext from '../hooks/useCartContext'
 function StockItemPage() {
     const [product, setProduct] = useState()
     const [quantity, setQuantity] = useState(1)
+    const [addedToCart, addToCart] = useState(false)
     const {id} = useParams()
 
     const {cart, dispatch} = useCartContext()
@@ -20,7 +21,8 @@ function StockItemPage() {
             dispatch({type: 'CREATE_CART', payload: {name: product.produceType, quantity: quantity, cost: product.produceDesiredPrice}})
         }
 
-        console.log(cart)
+        // console.log(cart)
+        addToCart(true)
 
     }
 
@@ -43,9 +45,13 @@ function StockItemPage() {
         fetchProducts()
     }, [])
 
+    useEffect(() => { setTimeout(() => {addToCart(false)}, 2000)}, [addedToCart])
+
 
     return (
         (product) && (
+        <>
+        {addedToCart && <div className='notification'>Item added to cart</div>} 
         <div className="main">
             <div className="row">
                 <div className="col">
@@ -83,6 +89,7 @@ function StockItemPage() {
                 </div>
             </div>
         </div> 
+        </>
         ) 
     )
 }

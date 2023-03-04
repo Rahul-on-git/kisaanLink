@@ -30,7 +30,7 @@ function Home() {
         <Combo />
         <Combo /> */}
         { 
-          combos.map((combo) => {return <Combo combo={combo}/>})
+          combos.map((combo) => {return <Combo combo={combo} key={combo._id}/>})
         }
       </div>
       <h1>Categories</h1>

@@ -3,10 +3,13 @@ import { Link, useSearchParams } from 'react-router-dom';
 
 import imageList from "../assets/individualItemImageList";
 import useCartContext from "../hooks/useCartContext";
+import useUserContext from "../hooks/useUserContext";
 
 function ShoppingPage() {
     const [products, setProducts] = useState([])
+    const [addedToCart, addToCart] = useState(false)
     const {cart, dispatch} = useCartContext()
+    const {user} = useUserContext()
     const [queryParameters] = useSearchParams()
 
     function handleClick(e, product) {
@@ -17,7 +20,7 @@ function ShoppingPage() {
         else {
             dispatch({type: 'CREATE_CART', payload: {name: product.produceType, quantity: 1, cost: product.produceDesiredPrice}})
         }
-
+        addToCart(true)
     }
 
     useEffect(() => {
@@ -63,8 +66,15 @@ function ShoppingPage() {
             fetchType(type)
         }
     }, [])
+
+
+    useEffect(() => { setTimeout(() => {addToCart(false)}, 2000)}, [addedToCart])
     return (
-        <div className="container">{
+        <>
+        {addedToCart && <div className='notification'>Item added to cart</div>} 
+        {!user && <div className='notification'>Sign in to shop</div>}
+        <div className="container">
+            {
             (products.length!==0 && products.map((product) => {
                 return(
                     <Link to={`../items/${product._id}`} className='none'>
@@ -73,12 +83,13 @@ function ShoppingPage() {
                             <h3>{product.produceType}</h3>
                             <p>Available Quantity: {' '} {product.produceQuantity}kgs</p>
                             <p>Price: <span>Rs{' '}{product.produceDesiredPrice}</span></p>
-                            <button onClick={(e) => handleClick(e,product)} className="form-btn">Add to Cart</button>
+                            <button onClick={(e) => handleClick(e,product)} className="form-btn" disabled={!user}>Add to Cart</button>
                         </div>
                     </Link>
                 );
             }))}
         </div>
+        </>
     );
 }
 

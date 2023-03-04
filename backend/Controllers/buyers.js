@@ -193,3 +193,13 @@ exports.comboBring = (req, res, next)=>{
     })
 
 }
+
+exports.comboBringSingle = (req, res, next)=>{
+
+    Combo.find({_id: req.params.id})
+    .then((combos)=>{
+        // console.log(combos);
+        res.status(202).json(combos)
+    })
+
+}
