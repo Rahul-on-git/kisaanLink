@@ -1,9 +1,10 @@
 import { useState } from "react"
 import useUserContext from "../hooks/useUserContext";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
     const [userType, setUserType] = useState('buyers');
-    
+    const navigate = useNavigate();
     const { dispatch } = useUserContext()
 
     const  [contact, setContact] = useState('');
@@ -31,6 +32,7 @@ function Login() {
             dispatch({ type: 'LOGIN', payload: json });
             localStorage.setItem('user', JSON.stringify(json));
             console.log(json)
+            navigate('/')
         }
     }
 

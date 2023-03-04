@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom";
 
 function Register() {
     const [userType, setUserType] = useState('buyers');
@@ -8,6 +9,8 @@ function Register() {
     const  [location, setLocation] = useState('');
     const  [password, setPassword] = useState('');
     const  [error, setError] = useState('');
+    const navigate = useNavigate();
+
 
     async function handleClick(e) {
         e.preventDefault()
@@ -33,9 +36,11 @@ function Register() {
             setPassword('')
             setUserType('buyers')
             setError('')
+            navigate('/')
         } else {
             setError(json)
         }
+
     }
 
     function handleUserType(e) {
