@@ -25,7 +25,10 @@ function Navbar() {
         </>
         )}
         {(user && (user.type === "Farmer" || user.type === "TruckDriver")) && 
-        (<Link to="/truck">Truck Management</Link>)
+        (<>
+        <Link to="/truck">Truck Management</Link>
+        <Link to='/farmersub'>Pricing</Link>
+        </>)
         }
 
         {(user && (user.type === "Buyer")) && 
@@ -38,8 +41,10 @@ function Navbar() {
         
 
         {(user && (user.type === "Buyer")) && 
-        (
+        ( <>
           <Link to="/cart"><i class="fa-solid fa-cart-shopping"></i></Link>
+          <Link to='/buyersub'>Pricing</Link>
+          </>
         )}
         {(user)
         && (
@@ -48,6 +53,7 @@ function Navbar() {
           <button type="submit" className="" onClick={handleClick}>Logout</button>
         </>
         )}
+
       </nav>
     </div>
   );

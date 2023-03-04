@@ -1,18 +1,33 @@
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import * as React from 'react';
+import { useLayoutEffect, useState } from 'react';
 
 
 const TruckMap = () => {
-
+  const {truckName} = useParams()
+  let truckInfo
+  const trucks = [
+    {truckName: 'Truck1', truckLoc: 'Niphad', truckCapacity: 20, truckFilled: 10, curLoc: {lat: 20.07, long: 74.10}, destLoc:{lat: 19.05, long: 72.90}},
+    {truckName: 'Truck2', truckLoc: 'Pimpalgaon', truckCapacity: 11, truckFilled: 5, curLoc: {lat:20.16, long:73.98}, destLoc:{lat: 19.05, long: 72.90}},
+    {truckName: 'Truck3', truckLoc: 'Nanded', truckCapacity: 15, truckFilled: 15, curLoc: {lat:19.1383, long: 77.3210}, destLoc:{lat: 19.0522, long: 72.9005}},
+    {truckName: 'Truck4', truckLoc: 'Karsul', truckCapacity: 10, truckFilled: 9, curLoc: {lat:20.1411, long:74.0311}, destLoc:{lat: 19.0522, long: 72.9005}}
+  ]
   // Create a reference to the HTML element we want to put the map on
   const mapRef = React.useRef(null);
-
+  console.log(truckName)
   /**
    * Create the map instance
    * While `useEffect` could also be used here, `useLayoutEffect` will render
    * the map sooner
    */
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
+    trucks.forEach((truck) => {
+      if (truck.truckName === truckName) {
+        truckInfo = truck
+        console.log(truckInfo)
+      }
+
+    })
     // `mapRef.current` will be `undefined` when this hook first runs; edge case that
     if (!mapRef.current) return;
     const H = window.H;
@@ -23,19 +38,23 @@ const TruckMap = () => {
     });
     const defaultLayers = platform.createDefaultLayers();
     const hMap = new H.Map(mapRef.current, defaultLayers.vector.normal.map, {
-      center: { lat: 15.29, lng: 74.12 },
+      center: { lat: 19.7515, lng: 75.7139 },
       zoom: 10,
       pixelRatio: window.devicePixelRatio || 1
     });
 
-
+    const origin = `${truckInfo.curLoc.lat},${truckInfo.curLoc.long}`
+    const destination = `${truckInfo.destLoc.lat},${truckInfo.destLoc.long}`
     var routingParameters = {
       'routingMode': 'fast',
       'transportMode': 'car',
       // The start point of the route:
-      'origin': '15.2567,74.3508',
+      'origin': origin,
       // The end point of the route:
-      'destination': '15.3167,74.1208',
+      'destination': destination,
+      // 'origin': '15.2567,74.3508',
+      // // The end point of the route:
+      // 'destination': '15.3167,74.1208',
       // Include the route shape in the response
       'return': 'polyline'
     };
@@ -117,7 +136,7 @@ const TruckMap = () => {
   return (
   <>
   <h2 style={{textAlign: 'center'}}>Current truck location and Route</h2>
-  <div className="map" ref={mapRef} style={{ height: "500px", width: "500px", margin: "auto" }} />
+  <div className="map" ref={mapRef} style={{ height: "500px", margin: "auto" }} />
   <Link to="/truck/pool" className='none' style={{textAlign: 'center', textDecoration: 'underline'}}><h2>Click to pool produce</h2></Link>
   </>
   );

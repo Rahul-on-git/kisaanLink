@@ -16,6 +16,8 @@ import StockItemPage from './pages/StockItemPage';
 import ShoppingPage from './pages/ShoppingPage';
 import Cart from './pages/Cart';
 import useCartContext from './hooks/useCartContext';
+import FarmerSubscription from './pages/FarmerSubscription';
+import BuyerSubscription from './pages/BuyerSubscription';
 
 function App() {
   const { user } = useUserContext()
@@ -34,6 +36,9 @@ function App() {
         <Route path='/trackOrder' element={<TrackOrder />}></Route>
         <Route path='/items/:id' element={<StockItemPage />} />
         <Route path='/cart' element={cart ? <Cart /> : <Navigate to="/"/>} />
+        <Route path='/farmersub' element={<FarmerSubscription />}></Route>
+        <Route path='/buyersub' element={<BuyerSubscription />}></Route>
+
         {/* <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
         <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
         <Route path="/register" element={!user ? <Register /> : <Navigate to="/" />} /> */}

@@ -1,10 +1,12 @@
 import Truck from "../components/Truck";
 
 function TruckManagement() {
-    const trucks = [{truckName: 'Truck1', truckLoc: 'Niphad', truckCapacity: 20, truckFilled: 10},
-              {truckName: 'Truck2', truckLoc: 'Pimpalgaon', truckCapacity: 11, truckFilled: 5},
-              {truckName: 'Truck3', truckLoc: 'Lasalgaon', truckCapacity: 15, truckFilled: 15},
-              {truckName: 'Truck4', truckLoc: 'Karsul', truckCapacity: 10, truckFilled: 9}]
+    const trucks = [
+        {truckName: 'Truck1', truckLoc: 'Niphad', truckCapacity: 20, truckFilled: 10, curLoc: {lat: 20.0771, long: 74.1094}, destLoc:{lat: 19.0522, loc: 72.9005}},
+        {truckName: 'Truck2', truckLoc: 'Pimpalgaon', truckCapacity: 11, truckFilled: 5, curLoc: {lat:20.1654, long:73.9879}, destLoc:{lat: 19.0522, loc: 72.9005}},
+        {truckName: 'Truck3', truckLoc: 'Nanded', truckCapacity: 15, truckFilled: 15, curLoc: {lat:19.1383, long: 77.3210}, destLoc:{lat: 19.0522, loc: 72.9005}},
+        {truckName: 'Truck4', truckLoc: 'Karsul', truckCapacity: 10, truckFilled: 9, curLoc: {lat:20.1411, long:74.0311}, destLoc:{lat: 19.0522, loc: 72.9005}}
+    ]
 
 
     return (
