@@ -12,6 +12,9 @@ body {
 
 .navbar {
   display: flex;
+  position: sticky;
+  top: 0px;
+  width: 100%;
   align-items: center;
   justify-content: space-around;
   font-size: 1.5rem;
@@ -34,12 +37,25 @@ nav {
   gap: 20px;
 }
 
+.home {
+  display: flex;
+}
+
+.home-img {
+  flex-basis: 50%;
+  background-image: url('./assets/home-img.jpg');
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+
 .home-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 3em;
-  gap: 2em
+  gap: 2em;
+  flex-basis: 50%;
 }
 
 .combo-container, .category-container {
