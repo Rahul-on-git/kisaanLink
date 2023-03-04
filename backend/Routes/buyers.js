@@ -18,6 +18,9 @@ router.get('/products', buyerController.displayProducts);
 router.get('/products/:id', buyerController.displayProduct);
 
 router.get('/product/:type', buyerController.displayType);
+
 router.get('/comboProducts', buyerController.comboProducts);
+
+router.get('/comboTest', buyerController.comboBring);
 
 module.exports = router;

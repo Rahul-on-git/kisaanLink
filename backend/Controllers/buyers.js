@@ -1,6 +1,7 @@
 const Buyer = require('../models/buyer');
 const Order = require('../models/order');
 const Stock = require('../models/stock');
+const Combo = require('../models/combo');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const stock = require('../models/stock');
@@ -181,4 +182,14 @@ exports.comboProducts = (req, res, next) => {
             });
             // console.log(products);
         })
+}
+
+exports.comboBring = (req, res, next)=>{
+
+    Combo.find()
+    .then((combos)=>{
+        // console.log(combos);
+        res.status(202).json(combos)
+    })
+
 }
