@@ -164,6 +164,21 @@ nav {
   touch-action: manipulation;
 }
 
+.logout-btn {
+  background-color: rgb(12, 157, 46);
+  padding: 10px 15px;
+  border-radius: 1rem;
+  border: 2px solid white;
+  color: white;
+  font-size: 1rem;
+  transition-property: background-color 0.3s, color 0;
+}
+
+.logout-btn:hover {
+  background-color: white;
+  color: rgb(12, 157, 46);
+}
+
 .form-btn:hover {
   box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
 }

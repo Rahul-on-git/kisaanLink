@@ -50,7 +50,7 @@ function Navbar() {
         && (
         <>
           {/* <div>{user.email}</div> */}
-          <button type="submit" className="" onClick={handleClick}>Logout</button>
+          <button type="submit" className="logout-btn" onClick={handleClick}>Logout</button>
         </>
         )}
 

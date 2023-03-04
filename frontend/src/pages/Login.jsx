@@ -3,9 +3,10 @@ import useUserContext from "../hooks/useUserContext";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-    const [userType, setUserType] = useState('buyers');
-    const navigate = useNavigate();
     const { dispatch } = useUserContext()
+    const [userType, setUserType] = useState('buyers');
+    const [isLoading, setLoading] = useState(false)
+    const navigate = useNavigate();
 
     const  [contact, setContact] = useState('');
     const  [password, setPassword] = useState('');

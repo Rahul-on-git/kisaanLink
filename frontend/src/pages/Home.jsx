@@ -1,16 +1,37 @@
 import Categories from "../components/Categories";
 import Combo from "../components/Combo";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function Home() {
+  const [combos, setCombos] = useState([])
+
+  useEffect(() => {
+    async function fetchCombos() {
+      const response = await fetch('/buyers/comboTest', {
+        method: 'GET'
+      })
+
+      const json = await response.json()
+      console.log(json)
+      setCombos(json)
+    }
+
+    fetchCombos()
+  }, [])
+
+
   return (
     <div className="home-container">
       <h1>Combos</h1>
       <div className="combo-container">
+        {/* <Combo />
         <Combo />
         <Combo />
-        <Combo />
-        <Combo />
+        <Combo /> */}
+        { 
+          combos.map((combo) => {return <Combo combo={combo}/>})
+        }
       </div>
       <h1>Categories</h1>
       <div className="category-container">
