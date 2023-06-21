@@ -10,7 +10,7 @@ const truckDriverRoutes = require("./Routes/truckDrivers");
 const bodyParser = require("body-parser");
 app.use(bodyParser.json())
 
-// Removal of CORS error
+// Removal of CORS errors
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Origin", "GET, POST, PUT, PATCH, DELETE");
