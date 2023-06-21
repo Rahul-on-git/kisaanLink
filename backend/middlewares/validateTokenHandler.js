@@ -3,6 +3,7 @@ const asyncHandler = require('express-async-handler');
 
 const validateToken = asyncHandler(async (req, res, next)=>{
     let token;
+    // auth headers
     let authHeader = req.headers.Authorization || req.headers.authorization;
     if(authHeader && authHeader.startsWith('Bearer')){
         token = authHeader.split(" ")[1];
