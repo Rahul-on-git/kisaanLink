@@ -10,4 +10,4 @@ to track the orders live in trucks with their number plates and live location. T
 frequent orders are incentivized and also farmers which sell their produce on a daily basis are given
 cost cuts in transport commission.
 
-# It is based on a REST API and uses MERN as its techstack.
+
